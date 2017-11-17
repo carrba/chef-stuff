@@ -6,8 +6,8 @@
 
 require 'spec_helper'
 
-describe 'lcd_web::default' do
-  context 'centos' do
+describe 'lcd_web::users' do
+  context 'Running against centos 7.2.1511' do
     let(:chef_run) do
       # for a complete list of available platforms and versions see:
       # https://github.com/customink/fauxhai/blob/master/PLATFORMS.md
@@ -18,16 +18,11 @@ describe 'lcd_web::default' do
     it 'converges successfully' do
       expect{ chef_run }.to_not raise_error
     end
-
-    it 'installs httpd' do
-      expect(chef_run).to install_package('httpd')
+    it 'creates user webadmin' do
+      expect(chef_run).to create_user('webadmin').with(group: 'developers')
     end
-    it 'start httpd' do
-      expect(chef_run).to start_service('httpd')
-    end
-
-    it 'installs net-tools' do
-      expect(chef_run).to install_package('net-tools')
+    it 'creates group developer' do
+      expect(chef_run).to create_group('developers')
     end
   end
 end
