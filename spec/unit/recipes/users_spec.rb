@@ -19,7 +19,7 @@ describe 'lcd_web::users' do
       expect{ chef_run }.to_not raise_error
     end
     it 'creates user webadmin' do
-      expect(chef_run).to create_user('webadmin').with(group: 'developers')
+      expect(chef_run).to create_user('webadmin').with(group: 'wheel')
     end
     it 'creates group developer' do
       expect(chef_run).to create_group('developers')

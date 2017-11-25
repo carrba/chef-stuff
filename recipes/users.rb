@@ -10,6 +10,11 @@ user 'webadmin' do
   password 'mUSuPZn8k0kV6'
 end
 
+group 'wheel' do
+  action :modify
+  members 'webadmin'
+  append true
+end
 
 group 'developers' do
   action :create
